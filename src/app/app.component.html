@@ -1,0 +1,52 @@
+<ion-split-pane contentId="menu-content" when="md">
+  <ion-menu contentId="menu-content" menuId="main-menu" [disabled]="true">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+
+      <ion-card *ngIf="user">
+        <ion-card-header>
+          <ion-row>
+            <ion-col size="4">
+              <ion-avatar class="center-content-user-initial" *ngIf="!user.photoURL">
+                <div class="user-init">{{ userInitial }}</div>
+              </ion-avatar>
+              <ion-avatar *ngIf="user.photoURL">
+                <img [src]="user.photoURL" />
+              </ion-avatar>
+            </ion-col>
+            <ion-col class="ion-margin-top" size="8">
+              <ion-card-title>{{ user.displayName }}</ion-card-title>
+              <ion-card-subtitle>{{ user.email }}</ion-card-subtitle>
+            </ion-col>
+          </ion-row>
+        </ion-card-header>
+        <ion-card-content>
+          <input #fileUpload type="file" accept="image/x-png,image/jpeg" (change)="uploadPWA($event)"
+            style="display: none;">
+          <ion-button expand="block" (click)="presentActionSheet(fileUpload)">
+            <ion-icon slot="start" name="images"></ion-icon>
+            Edit Photo
+          </ion-button>
+          <ng-container *ngIf="(uploadPercent | async) && !uploadCompleted">
+            <ion-progress-bar class="progress-bar" color="success" [value]="uploadPercent | async"></ion-progress-bar>
+            <ion-label color="success">{{ uploadPercent | async | number: '1.1-1' }}% Upload completed!</ion-label>
+          </ng-container>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-list>
+        <ion-menu-toggle autoHide="false">
+          <ion-item button *ngFor="let page of pages" [routerLink]="page.url" [routerDirection]="page.direction">
+            <ion-icon slot="start" [name]="page.icon"></ion-icon>
+            <ion-label>{{ page.text }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="menu-content"></ion-router-outlet>
+</ion-split-pane>

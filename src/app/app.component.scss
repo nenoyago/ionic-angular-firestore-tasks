@@ -1,0 +1,27 @@
+.center-content-user-initial {
+    background-color: var(--ion-color-primary);
+    color: white;
+    box-sizing: border-box;
+    width: 60px;
+    height: 60px;
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    -webkit-border-bottom-left-radius:50%;
+    -webkit-border-bottom-right-radius:50%;
+    -webkit-border-top-left-radius:50%;
+    -webkit-border-top-right-radius:50%;;
+}
+
+.user-init {
+    text-align: center;
+    padding-top: 14px;
+    font-size: 20pt;
+}
+
+.progress-bar {
+    width: 97.5%;
+    max-width: 97.5%;
+    margin-inline-start: 3px;
+    border-radius: 4px;
+}
